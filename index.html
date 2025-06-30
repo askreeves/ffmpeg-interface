@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg Container Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 FFmpeg Container Interface</h1>
+        
+        <div class="config-section">
+            <h3>Container Configuration</h3>
+            <label for="workerUrl">Worker URL:</label>
+            <input type="url" id="workerUrl" class="config-input" 
+                   placeholder="https://your-worker.your-subdomain.workers.dev"
+                   value="">
+            
+            <label for="apiPath">API Path:</label>
+            <input type="text" id="apiPath" class="config-input" 
+                   placeholder="/api/ffmpeg" value="/api/ffmpeg">
+        </div>
+        
+        <div class="upload-section">
+            <h3>📁 Upload Media File</h3>
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" class="file-input" accept="video/*,audio/*,image/*">
+                <button class="file-input-button">Choose File</button>
+            </div>
+            <div id="fileName"></div>
+        </div>
+        
+        <div class="command-section">
+            <h3>⚙️ FFmpeg Command</h3>
+            
+            <div class="presets">
+                <button class="preset-btn" onclick="setPreset('compress')">📦 Compress Video</button>
+                <button class="preset-btn" onclick="setPreset('extract_audio')">🎵 Extract Audio</button>
+                <button class="preset-btn" onclick="setPreset('resize')">📏 Resize Video</button>
+                <button class="preset-btn" onclick="setPreset('convert_mp4')">🔄 Convert to MP4</button>
+                <button class="preset-btn" onclick="setPreset('thumbnail')">🖼️ Generate Thumbnail</button>
+                <button class="preset-btn" onclick="setPreset('gif')">🎞️ Create GIF</button>
+            </div>
+            
+            <textarea id="command" class="command-input" placeholder="Enter your FFmpeg command here...
+Example: -i input.mp4 -c:v libx264 -crf 23 -c:a aac -b:a 128k output.mp4"></textarea>
+            
+            <button id="executeBtn" class="execute-btn" onclick="executeCommand()">
+                🚀 Execute FFmpeg Command
+            </button>
+        </div>
+        
+        <div class="output-section">
+            <h3>📤 Output</h3>
+            <div id="status"></div>
+            <div id="output" class="output">Ready to process media files...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
